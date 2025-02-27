@@ -1,110 +1,93 @@
-import { useState, useRef, useEffect } from 'react';
 
 const Home = () => {
-  const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-
-  const mainMenuRef = useRef(null);
-  const settingsMenuRef = useRef(null);
-
-
-  const handleClickOutside = (event) => {
-    if (mainMenuRef.current && !mainMenuRef.current.contains(event.target)) {
-      setIsMainMenuOpen(false);
-    }
-    if (settingsMenuRef.current && !settingsMenuRef.current.contains(event.target)) {
-      setIsSettingsOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
   return (
-    <div id="app" className="app-">
-
-      <div id="header-wrapper" className="fixed top-0 left-0 w-full z-50 bg-gray-800 shadow-md">
-        <div className="navbar navbar-expand-lg navbar-light px-4 py-3 d-flex justify-content-between align-items-center">
-
-          <a href="/" className="navbar-brand text-white d-flex align-items-center">
-            <img
-              src="/assets/img/logo/oac3.png" 
-              alt="Logo"
-              style={{ width: '40px', height: '40px', marginRight: '10px' }} 
-            />
-            <span style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>ໂອເອຊີ ໂບຼກເກີ ຈໍາກັດ</span>
-          </a>
+    <div className="container-fluid p-0">
+      <div
+        id="carouselExampleIndicators"
+        className="carousel slide"
+        data-bs-ride="carousel"
+        data-bs-interval="3000"
+      >
+        <div className="carousel-indicators">
           <button
             type="button"
-            className="navbar-toggler d-md-none"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            className="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
         </div>
-      </div>
 
-      <div id="menu-wrapper" className="bg-blue-600 py-1">
-        <div className="d-flex align-items-center px-4 w-full">
-          <div className="menu-item menu-control menu-control-start">
-            <a href="javascript:;" className="menu-link" data-toggle="app-top-menu-prev">
-              <i className="fa fa-angle-left"></i>
-            </a>
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <img
+              src="https://www.itl.cat/pngfile/big/9-97567_wallpapers-hd-theme-group-ship-on-sea-at.jpg"
+              className="d-block w-100"
+              alt="Slide 1"
+              style={{
+                height: "140vh",
+                objectFit: "cover",
+                width: "100%",
+              }}
+            />
           </div>
-
-          <div ref={mainMenuRef} className="dropdown">
-            <a
-              href="/home"
-              onClick={() => setIsMainMenuOpen(!isMainMenuOpen)}
-              className="btn btn-link text-white d-flex align-items-center"
-              id="mainMenuButton"
-              aria-expanded={isMainMenuOpen}
-              style={{ textDecoration: 'none' }}
-            >
-              <i className="fa fa-home" style={{ fontSize: '18px' }}></i> {/* Larger icon */}
-              <span className="ms-2">ໜ້າຫຼັກ</span>
-            </a>
+          <div className="carousel-item">
+            <img
+              src="https://images.pexels.com/photos/1563355/pexels-photo-1563355.jpeg?cs=srgb&dl=pexels-thatguycraig000-1563355.jpg&fm=jpg"
+              className="d-block w-100"
+              alt="Slide 2"
+              style={{
+                height: "55vh",
+                objectFit: "cover",
+                width: "100%",
+              }}
+            />
           </div>
-
-          <div ref={settingsMenuRef} className="dropdown">
-            <button
-              onClick={() => setIsSettingsOpen(!isSettingsOpen)}
-              className="btn btn-link text-white d-flex align-items-center"
-              id="settingsMenuButton"
-              aria-expanded={isSettingsOpen}
-              style={{ textDecoration: 'none' }}
-            >
-              <i className="fa fa-cogs" style={{ fontSize: '24px' }}></i> {/* Larger icon */}
-              <span className="ms-2">Settings</span>
-              <i className={`fa fa-chevron-down ms-2 ${isSettingsOpen ? 'rotate-180' : ''}`}></i>
-            </button>
-            <div
-              className={`dropdown-menu ${isSettingsOpen ? 'show' : ''}`}
-              aria-labelledby="settingsMenuButton"
-            >
-              <a className="dropdown-item" href="#">Profile</a>
-              <a className="dropdown-item" href="#">Security</a>
-              <a className="dropdown-item" href="#">Logout</a>
-            </div>
-          </div>
-
-          <div className="menu-item menu-control menu-control-end">
-            <a href="javascript:;" className="menu-link" data-toggle="app-top-menu-next">
-              <i className="fa fa-angle-right"></i>
-            </a>
+          <div className="carousel-item">
+            <img
+              src="https://images.unsplash.com/photo-1474767821094-a8fe9d8c8fdd?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bmF0dXJlJTIwaGR8ZW58MHx8MHx8fDA%3D"
+              className="d-block w-100"
+              alt="Slide 3"
+              style={{
+                height: "55vh",
+                objectFit: "cover",
+                width: "100%",
+              }}
+            />
           </div>
         </div>
-      </div>
 
-      <div className="main-content mt-5">
-        <div className="container">
-          <h1 className="text-center">Welcome to the Home Page</h1>
-
-        </div>
+        <button
+          className="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
+        >
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button
+          className="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
+        >
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
+        </button>
       </div>
     </div>
   );
